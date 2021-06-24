@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-search-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: api-search-pod
+      labels:
+        app: api-search-pod
+    spec:
+      containers:
+        - name: api-search-container
+          image: nimpi/search:latest
+          ports:
+            - containerPort: 80
+  selector:
+    matchLabels:
+      app: api-search-pod
